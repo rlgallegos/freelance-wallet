@@ -18,3 +18,13 @@ from config import bcrypt, db, app
 #     serialize_rules = ('-stuff.user',)
 
 #     stuff = db.relationship('Stuff', back_populates='user')
+
+
+class User(db.Model, SerializerMixin):
+    __tablename__ = 'users'
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String)
+    hashed_password = db.Column(db.String)
+
+    serialize_rules = ('-hashed_password',)
