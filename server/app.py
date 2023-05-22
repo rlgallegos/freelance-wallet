@@ -15,12 +15,6 @@ load_dotenv()
 app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
 
 
-# Show server route
-app.static_folder = '../client/build'
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def serve_frontend():
-    return render_template('index.html')
 
 # Signup / Login Routes
 
@@ -128,6 +122,16 @@ class IncomeById(Resource):
         return make_response(user.to_dict(), 200)
 
 api.add_resource(IncomeById, '/incomes/<int:id>')
+
+
+
+
+# Show server route
+app.static_folder = '../client/build'
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve_frontend():
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
