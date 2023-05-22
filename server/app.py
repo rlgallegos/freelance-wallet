@@ -77,7 +77,7 @@ class Dashboard(Resource):
         user = User.query.filter(User.id == session['user_id']).first()
         return make_response(user.to_dict(), 200)
 
-api.add_resource(Dashboard, '/dashboard')
+api.add_resource(Dashboard, '/serve-dashboard')
 
 class UserById(Resource):
     def patch(self, id):
