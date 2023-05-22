@@ -14,7 +14,6 @@ const Dashboard: React.FC = () => {
     const [startTour, setStartTour] = useState<boolean>(false)
     const navigate = useNavigate()
     const { user, updateUser } = useUserContext();
-    // const [initialization, setInitialization] = useState<boolean>(false)
 
     useEffect(() => {
         fetch('/dashboard')
@@ -33,17 +32,18 @@ const Dashboard: React.FC = () => {
     }
 
   return (
-    <>
-    <div>Dashboard</div>
-    {startTour && <Onboarding />}
-    {!user.initialized && <InitialForm userID={user.id} />}
-    <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/setup" element={<Setup />}/>
-        <Route path="/profile" element={<Profile />}/>
-    </Routes>
-    <button id='onboard-button' onClick={handleOnboarding}>Click to start onboarding for now</button>
-    </>
+    <div>
+        {startTour && <Onboarding />}
+        {!user.initialized && <InitialForm userID={user.id} />}
+        <Routes>
+            <Route path="/" element={<Home />}/>
+            <Route path="/setup" element={<Setup />}/>
+            <Route path="/profile" element={<Profile />}/>
+        </Routes>
+        <div className='flex mx-auto'>
+            <button id='onboard-button' onClick={handleOnboarding} className='mx-auto p-2 text-center text-primary border border-primary bg-white bg-opacity-80 hover:bg-secondary rounded-lg'>Click to take the tour</button>
+        </div>
+    </div>
   )
 }
 export default Dashboard

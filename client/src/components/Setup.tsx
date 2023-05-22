@@ -9,10 +9,9 @@ const Setup: React.FC = () => {
     }
 
     return (
-        <div>
-            <h1>Setup Page</h1>
+        <div className='bg-white bg-opacity-80 w-4/5 sm:w-2/3 mx-auto h-full mb-4 text-center flex flex-col justify-center border-2 border-primary rounded-md'>
             {addIncome && <AddIncome />}
-            {!addIncome && <button onClick={handleClick}>Add Income</button>}
+            {!addIncome && <button className='mx-auto p-2 text-center text-primary border border-primary hover:bg-secondary bg-opacity-80 rounded-lg my-4' onClick={handleClick}>Add Income</button>}
         </div>
     )
 }

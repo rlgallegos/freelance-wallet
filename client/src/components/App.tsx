@@ -10,17 +10,17 @@ import Dashboard from './Dashboard';
 function App() {
   return (
     <div className="bg-cover bg-top bg-no-repeat h-screen w-screen fixed bg-mobile sm:bg-desktop" >
-      <header>
-      </header>
-      <main>
+      <main className='h-full w-full'>
         <UserProvider>
             <Navbar />
+            <div className='h-3/4 flex flex-col justify-center'>
             <Routes>
                 <Route path="/" element={<Navigate to="/dashboard" replace />} />
                 <Route path='/welcome' element={<Welcome />}/>
                 <Route path='/dashboard/*' element={<Dashboard />}/>
                 <Route path='*' element={<NotFound />}/>
             </Routes>
+            </div>
         </UserProvider>
       </main>
     </div>

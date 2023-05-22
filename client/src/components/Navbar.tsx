@@ -3,7 +3,7 @@ import { useUserContext } from "./UserContext"
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar: React.FC = () => {
-    const tailwindCSSLink = "text-primary_dark sm:mx-20"
+    const tailwindCSSLink = "text-primary sm:mx-20"
 
     const { user } = useUserContext();
     const navigate = useNavigate()
@@ -17,20 +17,30 @@ const Navbar: React.FC = () => {
             navigate('/welcome')
         })
     }
-    console.log(user.id)
-    console.log(isLoggedIn)
 
     return(
-    <div id="navbar" className="flex flex-col sm:flex-row justify-between py-4 px-6 bg-white bg-opacity-80 font-bold">
+    <div id="navbar" className="flex flex-col sm:flex-row justify-between px-6 bg-white bg-opacity-80 font-bold text-xl items-center">
         {user.id && isLoggedIn ? <>
-            <h3 className="text-primary_dark">Hello {user.username}!</h3>
+            <h3 className="text-primary">Hello {user.username}!</h3>
             <div className="flex flex-col sm:flex-row">
-                <Link to='/dashboard/' className={tailwindCSSLink}>Home</Link>
-                <Link to='/dashboard/profile' className={tailwindCSSLink} >Profile</Link>
-                <Link to='/dashboard/setup' className={tailwindCSSLink} >Setup</Link>
+                <Link to='/dashboard/' className={tailwindCSSLink}>
+                    <div className="hover:bg-primary hover:text-white rounded-sm py-2">
+                        <h3 className="px-8">Home</h3>
+                    </div>
+                </Link>
+                <Link to='/dashboard/profile' className={tailwindCSSLink} >
+                    <div className="hover:bg-primary hover:text-white rounded-sm py-2">
+                        <h3 className="px-8">Profile</h3>
+                    </div>                    
+                </Link>
+                <Link to='/dashboard/setup' className={tailwindCSSLink} >
+                <div className="hover:bg-primary hover:text-white rounded-sm py-2">
+                        <h3 className="px-8">Setup</h3>
+                    </div>
+                </Link>
             </div>
-            <button onClick={handleLogout}>Logout</button>
-        </> : <h4>Welcome!</h4>}
+            <button onClick={handleLogout} className="hover:bg-primary hover:text-white rounded-sm py-2 px-6 text-primary">Logout</button>
+        </> : <h4 className="mx-auto py-2">Welcome!</h4>}
     </div>
     )
 }

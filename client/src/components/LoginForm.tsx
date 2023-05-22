@@ -43,11 +43,11 @@ const LoginForm: React.FC = () => {
   return (
     <div>
         <form onSubmit={formik.handleSubmit}>
-            <input name='username' value={formik.values.username} onChange={formik.handleChange} type='text' placeholder='Enter username' />
+            <input name='username' value={formik.values.username} onChange={formik.handleChange} type='text' placeholder='Enter username' className='border-2 border-secondary my-2 px-1' />
                 <p style={{color: "red"}}>{formik.errors.username}</p>
-                <input name='password' value={formik.values.password} onChange={formik.handleChange} type='password' placeholder='Enter password' />
+                <input name='password' value={formik.values.password} onChange={formik.handleChange} type='password' placeholder='Enter password' className='border-2 border-secondary my-2 px-1' />
                 <p style={{color: "red"}}>{formik.errors.password}</p>
-            <input type="submit" value="Login" />
+            <input className='clickable mx-auto py-1 px-3 text-center text-primary border border-primary hover:bg-secondary bg-opacity-80 rounded-lg my-1' type="submit" value="Login" />
             {errorMessage && <p style={{color: "red"}} >{errorMessage}</p>}
         </form>
     </div>
