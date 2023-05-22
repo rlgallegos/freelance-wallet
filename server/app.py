@@ -15,6 +15,13 @@ load_dotenv()
 app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
 
 
+# Frontend Route to server index.html
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve_frontend(path):
+    return render_template('index.html')
+
 # Signup / Login Routes
 
 class Signup(Resource):
@@ -119,9 +126,6 @@ class IncomeById(Resource):
         except:
             return make_response({'error': 'Failed to update Income'}, 422)
         return make_response(user.to_dict(), 200)
-
-
-
 
 api.add_resource(IncomeById, '/incomes/<int:id>')
 
