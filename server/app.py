@@ -17,6 +17,8 @@ app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
 
 # Show server route
 app.static_folder = '../client/build'
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
 def serve_frontend():
     return render_template('index.html')
 
