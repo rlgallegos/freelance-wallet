@@ -14,6 +14,12 @@ load_dotenv()
 # Be sure to actually add your secret key in the .env folder in the server directory
 app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
 
+
+# Show server route
+app.static_folder = '../client/build'
+def serve_frontend():
+    return render_template('index.html')
+
 # Signup / Login Routes
 
 class Signup(Resource):
