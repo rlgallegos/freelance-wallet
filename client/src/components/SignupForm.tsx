@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useFormik } from 'formik';
 import * as yup from "yup";
 import { useNavigate } from 'react-router-dom';
 
-export default function SignupForm() {
+const SignupForm: React.FC = () => {
     const navigate = useNavigate()
     const [errorMessage, setErrorMessage] = useState<string>('')
 
@@ -64,3 +64,4 @@ export default function SignupForm() {
     </div>
   )
 }
+export default SignupForm

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import SignupForm from './SignupForm'
 import LoginForm from './LoginForm'
 
-export default function Welcome() {
+const Welcome: React.FC = () => {
     const [form, setForm] = useState<string>('login-button')
 
 
@@ -13,9 +13,6 @@ export default function Welcome() {
   return (
     <div>
         <div>
-            <h1>Welcome!</h1>
-        </div>
-        <div>
             {form === 'login-button' ? <LoginForm /> : <SignupForm /> }
         </div>
         <button onClick={handleClick} id='login-button'>Login</button>
@@ -23,3 +20,4 @@ export default function Welcome() {
     </div>
   )
 }
+export default Welcome

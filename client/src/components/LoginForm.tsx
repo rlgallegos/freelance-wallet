@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as yup from "yup";
 import { useNavigate } from 'react-router-dom';
 
-export default function LoginForm() {
+const LoginForm: React.FC = () => {
     const navigate = useNavigate()
     const [errorMessage, setErrorMessage] = useState<string>('')
 
@@ -53,3 +53,4 @@ export default function LoginForm() {
     </div>
   )
 }
+export default LoginForm
