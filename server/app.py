@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 
-from flask import Flask, request, make_response, session, jsonify, redirect, url_for, render_template
+from flask import Flask, request, make_response, session, jsonify, redirect, url_for, render_template, send_from_directory
 from flask_restful import Api, Resource
 from config import bcrypt, app, db
 
@@ -14,7 +14,7 @@ load_dotenv()
 # Be sure to actually add your secret key in the .env folder in the server directory
 app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
 
-app.static_folder = '../client/build'
+app.static_folder = 'client/build'
 app.static_url_path = '/'
 
 # Signup / Login Routes
