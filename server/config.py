@@ -9,7 +9,7 @@ metadata = MetaData(naming_convention={
 })
 
 db = SQLAlchemy(metadata=metadata)
-app = Flask(__name__, static_folder='client/build', static_url_path='/')
+app = Flask(__name__)
 bcrypt = Bcrypt(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///freelance.db'

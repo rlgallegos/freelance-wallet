@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 
-from flask import Flask, request, make_response, session, jsonify, redirect, url_for, render_template
+from flask import Flask, request, make_response, session, jsonify, redirect, url_for
 from flask_restful import Api, Resource
 from config import bcrypt, app, db
 
@@ -13,14 +13,6 @@ load_dotenv()
 
 # Be sure to actually add your secret key in the .env folder in the server directory
 app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
-
-
-# Frontend Route to server index.html
-
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def serve_frontend(path):
-    return render_template('index.html')
 
 # Signup / Login Routes
 
