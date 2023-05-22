@@ -130,7 +130,7 @@ api.add_resource(IncomeById, '/incomes/<int:id>')
 app.static_folder = '../client/build'
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
-def serve_frontend():
+def serve_frontend(path):
     return render_template('index.html')
 
 
