@@ -14,8 +14,12 @@ load_dotenv()
 # Be sure to actually add your secret key in the .env folder in the server directory
 app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
 
-app.static_folder = 'client/build'
-app.static_url_path = '/'
+
+# Basic Route for setup 
+@app.route('/')
+@app.route('/<int:id>')
+def index(id=0):
+    return render_template("index.html")
 
 # Signup / Login Routes
 
@@ -129,13 +133,13 @@ api.add_resource(IncomeById, '/incomes/<int:id>')
 
 # Show server route
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def serve(path):
-    if path != "" and os.path.exists(app.static_folder + '/' + path):
-        return send_from_directory(app.static_folder, path)
-    else:
-        return send_from_directory(app.static_folder, 'index.html')
+# @app.route('/', defaults={'path': ''})
+# @app.route('/<path:path>')
+# def serve(path):
+#     if path != "" and os.path.exists(app.static_folder + '/' + path):
+#         return send_from_directory(app.static_folder, path)
+#     else:
+#         return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
