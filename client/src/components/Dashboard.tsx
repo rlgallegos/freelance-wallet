@@ -22,28 +22,33 @@ const Dashboard: React.FC = () => {
                 res.json().then(data => updateUser(data) )
             } else {
                 navigate('/welcome')
+
             }
         })
     }, [])
 
+    console.log(user)
 
     const handleOnboarding = (): void => {
         setStartTour(true)
     }
 
   return (
-    <div>
-        {startTour && <Onboarding />}
-        {!user.initialized && <InitialForm userID={user.id} />}
-        <Routes>
-            <Route path="/" element={<Home />}/>
-            <Route path="/setup" element={<Setup />}/>
-            <Route path="/profile" element={<Profile />}/>
-        </Routes>
-        <div className='flex mx-auto'>
-            <button id='onboard-button' onClick={handleOnboarding} className='mx-auto p-2 text-center text-primary border border-primary bg-white bg-opacity-80 hover:bg-secondary rounded-lg'>Click to take the tour</button>
+    <>
+        {!user.initialized && <InitialForm userID={user.id}/>}
+        <div>
+            {startTour && <Onboarding />}
+            
+            <Routes>
+                <Route path="/" element={<Home />}/>
+                <Route path="/setup" element={<Setup />}/>
+                <Route path="/profile" element={<Profile />}/>
+            </Routes>
+            <div className='md:absolute md:right-10 md:bottom-10 mx-auto'>
+                <button id='onboard-button' onClick={handleOnboarding} className='mx-auto p-2 text-center text-primary border border-primary bg-white bg-opacity-80 hover:bg-secondary rounded-lg'>Click to take the tour</button>
+            </div>
         </div>
-    </div>
+    </>
   )
 }
 export default Dashboard

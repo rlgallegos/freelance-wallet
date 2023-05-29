@@ -48,6 +48,7 @@ class Signup(Resource):
             db.session.commit()
         except:
             return make_response({"error": "Failed to Save New User"}, 422)
+        session['user_id'] = new_user.id
         return make_response(new_user.to_dict(), 201)
 
 api.add_resource(Signup, '/signup')
@@ -57,6 +58,8 @@ class Login(Resource):
         # Find user and validate them
         data = request.get_json()
         user = User.query.filter(User.username == data['username']).first()
+        if not user:
+            return make_response({'error': 'Please enter valid credentials'}, 422)
         # TODO: Validation Logic
         # TODO: Try/Except Logic
         session['user_id'] = user.id
@@ -76,9 +79,11 @@ api.add_resource(Logout, '/logout')
 class Dashboard(Resource):
     def get(self):
         if not session['user_id']:
+            print('not logged in')
             return make_response({'error': "Not Logged In"}, 401)
 
         user = User.query.filter(User.id == session['user_id']).first()
+        print(user)
         return make_response(user.to_dict(), 200)
 
 api.add_resource(Dashboard, '/serve-dashboard')
