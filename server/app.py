@@ -15,12 +15,13 @@ load_dotenv()
 app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
 
 
-# Basic Route for setup 
+# FE Routes to render index.html before FE routing
 @app.route('/')
 @app.route('/welcome')
 @app.route('/dashboard')
+@app.route('/dashboard/')
 @app.route('/dashboard/setup')
-@app.route('/dashboard/setup/profile')
+@app.route('/dashboard/profile')
 @app.route('/<int:id>')
 def index(id=0):
     return render_template("index.html")
