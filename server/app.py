@@ -17,6 +17,10 @@ app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
 
 # Basic Route for setup 
 @app.route('/')
+@app.route('/welcome')
+@app.route('/dashboard')
+@app.route('/dashboard/setup')
+@app.route('/dashboard/setup/profile')
 @app.route('/<int:id>')
 def index(id=0):
     return render_template("index.html")
