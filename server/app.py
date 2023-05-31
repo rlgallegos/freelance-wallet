@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 
-from flask import Flask, request, make_response, session, jsonify, redirect, url_for, render_template, send_from_directory
+from flask import Flask, request, make_response, jsonify, redirect, url_for, render_template, send_from_directory
 from flask_restful import Api, Resource
 from config import bcrypt, app, db
 
@@ -84,7 +84,6 @@ api.add_resource(Logout, '/logout')
 
 class Dashboard(Resource):
     def get(self):
-        print("Now in dashboard: " + str(session['user_id']))
         if 'user_id' not in session or not session['user_id']:
             print('not logged in')
             return make_response({'error': "Not Logged In"}, 401)
