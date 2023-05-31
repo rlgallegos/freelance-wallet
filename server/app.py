@@ -83,7 +83,7 @@ api.add_resource(Logout, '/logout')
 
 class Dashboard(Resource):
     def get(self):
-        if not session['user_id']:
+        if 'user_id' not in session or not session['user_id']:
             print('not logged in')
             return make_response({'error': "Not Logged In"}, 401)
 
