@@ -68,8 +68,7 @@ class Login(Resource):
         # TODO: Validation Logic
         # TODO: Try/Except Logic
         session['user_id'] = user.id
-        print(user.id)
-        print(session['user_id'])
+        print("The Session variable has this: " + session['user_id'])
         return make_response(user.to_dict(), 200)
 
 api.add_resource(Login, '/login')
@@ -85,6 +84,7 @@ api.add_resource(Logout, '/logout')
 
 class Dashboard(Resource):
     def get(self):
+        print("Now in dashboard: " + session['user_id'])
         if 'user_id' not in session or not session['user_id']:
             print('not logged in')
             return make_response({'error': "Not Logged In"}, 401)
