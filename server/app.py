@@ -68,6 +68,7 @@ class Login(Resource):
         # TODO: Validation Logic
         # TODO: Try/Except Logic
         session['user_id'] = user.id
+        print(session['user_id'])
         return make_response(user.to_dict(), 200)
 
 api.add_resource(Login, '/login')
