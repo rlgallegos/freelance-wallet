@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 
-from flask import Flask, request, make_response, jsonify, redirect, url_for, render_template, send_from_directory
+from flask import Flask, request, make_response, jsonify, redirect, url_for, render_template, send_from_directory, session
 from flask_restful import Api, Resource
 from config import bcrypt, app, db
 
