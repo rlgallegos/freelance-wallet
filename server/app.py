@@ -9,10 +9,10 @@ from config import bcrypt, app, db
 from models import User, Income
 
 api = Api(app)
-load_dotenv()
+# load_dotenv()
 
 # Be sure to actually add your secret key in the .env folder in the server directory
-app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
+# app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
 
 
 # FE Routes to render index.html before FE routing
@@ -157,4 +157,5 @@ api.add_resource(IncomeById, '/incomes/<int:id>')
 #         return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
+    app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
     app.run(port=5555, debug=True)
