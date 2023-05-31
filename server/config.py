@@ -30,7 +30,6 @@ app.config['SECRET_KEY'] = os.environ.get('FLASK_APP_SECRET_KEY')
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_COOKIE_SAMESITE'] = 'None'
 app.config['SESSION_COOKIE_SECURE'] = True
-app.json.compact = False
 
 migrate = Migrate(app, db)
 
