@@ -27,7 +27,7 @@ const SignupForm: React.FC = () => {
         validationSchema: formSchema,
         validateOnChange: false,
         onSubmit: values => {
-            fetch('/signup', {
+            fetch(process.env.REACT_APP_API_URL + '/signup', {
                 method: 'POST',
                 headers:  {
                     'Content-Type': 'application/json'
