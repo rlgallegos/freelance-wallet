@@ -20,9 +20,6 @@ app = Flask(
     template_folder='../client/build'
 )
 Session(app)
-CORS(app, origins=['https://freelance-wallet.vercel.app'])
-
-bcrypt = Bcrypt(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///freelance.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -30,6 +27,10 @@ app.config['SECRET_KEY'] = os.environ.get('FLASK_APP_SECRET_KEY')
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_COOKIE_SAMESITE'] = 'None'
 app.config['SESSION_COOKIE_SECURE'] = True
+
+CORS(app, origins=['https://freelance-wallet.vercel.app'])
+
+bcrypt = Bcrypt(app)
 
 migrate = Migrate(app, db)
 
