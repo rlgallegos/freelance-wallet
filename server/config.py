@@ -19,7 +19,7 @@ app = Flask(
     static_folder='../client/build',
     template_folder='../client/build'
 )
-Session(app)
+# Session(app)
 app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///freelance.db'
