@@ -12,6 +12,7 @@ flask-sqlalchemy = "*"
 flask-migrate = "*"
 sqlalchemy-serializer = "*"
 gunicorn = "*"
+flask-cors = "*"
 
 [dev-packages]
 

@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_bcrypt import Bcrypt
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 from flask_migrate import Migrate
@@ -16,6 +17,7 @@ app = Flask(
     static_folder='../client/build',
     template_folder='../client/build'
 )
+CORS(app)
 
 bcrypt = Bcrypt(app)
 
