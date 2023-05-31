@@ -60,10 +60,6 @@ api.add_resource(Signup, '/signup')
 
 class Login(Resource):
     def post(self):
-        try:
-            print(session['user_id'])
-        except:
-            print('No session user id')
         # Find user and validate them
         data = request.get_json()
         user = User.query.filter(User.username == data['username']).first()
@@ -88,6 +84,10 @@ api.add_resource(Logout, '/logout')
 
 class Dashboard(Resource):
     def get(self):
+        try:
+            print(session['user_id'])
+        except:
+            print('No session user id')
         if 'user_id' not in session or not session['user_id']:
             print('not logged in')
             return make_response({'error': "Not Logged In"}, 401)
