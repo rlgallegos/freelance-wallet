@@ -17,7 +17,7 @@ app = Flask(
     static_folder='../client/build',
     template_folder='../client/build'
 )
-CORS(app)
+CORS(app, origins=['https://freelance-wallet.vercel.app'])
 
 bcrypt = Bcrypt(app)
 
