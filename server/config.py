@@ -20,10 +20,11 @@ app = Flask(
     template_folder='../client/build'
 )
 Session(app)
+app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///freelance.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = os.environ.get('FLASK_APP_SECRET_KEY')
+# app.config['SECRET_KEY'] = os.environ.get('FLASK_APP_SECRET_KEY')
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_COOKIE_SAMESITE'] = 'None'
 app.config['SESSION_COOKIE_SECURE'] = True
