@@ -60,6 +60,10 @@ api.add_resource(Signup, '/signup')
 
 class Login(Resource):
     def post(self):
+        try:
+            print(session['user_id'])
+        except:
+            print('No session user id')
         # Find user and validate them
         data = request.get_json()
         user = User.query.filter(User.username == data['username']).first()
