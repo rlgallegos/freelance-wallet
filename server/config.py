@@ -32,9 +32,6 @@ app.config['SESSION_COOKIE_SAMESITE'] = 'None'
 app.config['SESSION_COOKIE_SECURE'] = True
 app.json.compact = False
 
-
-
-
 migrate = Migrate(app, db)
 
 db.init_app(app)
