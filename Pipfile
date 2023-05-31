@@ -13,6 +13,7 @@ flask-migrate = "*"
 sqlalchemy-serializer = "*"
 gunicorn = "*"
 flask-cors = "*"
+flask-session = "*"
 
 [dev-packages]
 
