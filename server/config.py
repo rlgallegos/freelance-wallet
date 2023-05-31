@@ -23,6 +23,8 @@ bcrypt = Bcrypt(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///freelance.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = os.environ.get('FLASK_APP_SECRET_KEY')
+app.config['SESSION_TYPE'] = 'filesystem'
 app.json.compact = False
 
 
