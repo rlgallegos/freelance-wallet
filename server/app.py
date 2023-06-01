@@ -1,9 +1,9 @@
 from dotenv import load_dotenv
 import os
-
+from config import bcrypt, app, db
 from flask import Flask, request, make_response, jsonify, redirect, url_for, render_template, send_from_directory, session
 from flask_restful import Api, Resource
-from config import bcrypt, app, db
+
 
 # Here import all of the different models you'll need along with the database
 from models import User, Income
