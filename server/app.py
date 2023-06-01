@@ -77,7 +77,9 @@ class Login(Resource):
         # print("The Session variable has this: " + str(session['user_id']))
         print(session)
         print(dict(session))
-        return make_response(user.to_dict(), 200)
+        response = make_response(user.to_dict(), 200)
+        response.headers['Access-Control-Allow-Credentials'] = 'true'
+        return response
 
 api.add_resource(Login, '/login')
 
