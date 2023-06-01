@@ -27,7 +27,7 @@ api = Api(app)
 #     return render_template("index.html")
 
 # app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
-app.secret_key = thesecretkey
+app.secret_key = 'thesecretkey'
 
 # Signup / Login Routes
 
