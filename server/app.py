@@ -71,7 +71,9 @@ class Login(Resource):
         # TODO: Try/Except Logic
         print(user.id)
         session['user_id'] = user.id
-        print("The Session variable has this: " + str(session['user_id']))
+        # print("The Session variable has this: " + str(session['user_id']))
+        print(session)
+        print(dict(session))
         return make_response(user.to_dict(), 200)
 
 api.add_resource(Login, '/login')
