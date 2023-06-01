@@ -100,7 +100,11 @@ class Dashboard(Resource):
 
         user = User.query.filter(User.id == session['user_id']).first()
         print(user)
-        return make_response(user.to_dict(), 200)
+        
+        response = make_response(user.to_dict(), 200)
+        response.headers.add('Access-Control-Allow-Origin', 'https://freelance-wallet.vercel.app')
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+        return response
 
 api.add_resource(Dashboard, '/serve-dashboard')
 
