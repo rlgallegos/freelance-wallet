@@ -19,6 +19,7 @@ app = Flask(
     # static_folder='../client/build',
     # template_folder='../client/build'
 )
+Session(app)
 app.config['SECRET_KEY'] = os.environ.get('FLASK_APP_SECRET_KEY')
 # CORS(app, allow_headers=["Content-Type", "Authorization", "Cookie"])
 CORS(app)
