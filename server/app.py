@@ -73,7 +73,7 @@ class Login(Resource):
         session['user_id'] = user.id
         # print("The Session variable has this: " + str(session['user_id']))
         print(session)
-        print("Session ID:", session.session_id)
+        print("Session ID:", session._get_current_object().sid)
         print(dict(session))
         return make_response(user.to_dict(), 200)
 
