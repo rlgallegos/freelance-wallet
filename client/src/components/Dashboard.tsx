@@ -18,7 +18,11 @@ const Dashboard: React.FC = () => {
     useEffect(() => {
         fetch(process.env.REACT_APP_API_URL + '/serve-dashboard', {
             method: "GET",
-            credentials: 'include'
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              }
         })
         .then(res => {
             if (res.ok){
