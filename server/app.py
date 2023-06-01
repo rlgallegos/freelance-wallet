@@ -157,4 +157,4 @@ api.add_resource(IncomeById, '/incomes/<int:id>')
 #         return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
-    app.run(port=5555, debug=True)
+    app.run(port=5555)
