@@ -72,15 +72,8 @@ class Login(Resource):
             return make_response({'error': 'Please enter valid credentials'}, 422)
         # TODO: Validation Logic
         # TODO: Try/Except Logic
-        print(user.id)
         session['user_id'] = user.id
-        # print("The Session variable has this: " + str(session['user_id']))
-        print(session)
-        print(dict(session))
         response = make_response(user.to_dict(), 200)
-        # if 'Access-Control-Allow-Credentials' in response.headers:
-        #     del response.headers['Access-Control-Allow-Credentials']
-        # response.headers['Access-Control-Allow-Credentials'] = 'true'
         return response
 
 api.add_resource(Login, '/login')
@@ -97,11 +90,6 @@ api.add_resource(Logout, '/logout')
 class Dashboard(Resource):
     # @cross_origin(supports_credentials=True)
     def get(self):
-        try:
-            print(session['user_id'])
-        except:
-            print(session)
-            print(dict(session))
         if 'user_id' not in session or not session['user_id']:
             print('not logged in')
             return make_response({'error': "Not Logged In"}, 401)
@@ -110,9 +98,6 @@ class Dashboard(Resource):
         print(user)
 
         response = make_response(user.to_dict(), 200)
-        # if 'Access-Control-Allow-Credentials' in response.headers:
-        #     del response.headers['Access-Control-Allow-Credentials']
-        # response.headers['Access-Control-Allow-Credentials'] = 'true'
         return response
 
 api.add_resource(Dashboard, '/serve-dashboard')
