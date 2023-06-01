@@ -89,8 +89,9 @@ class Dashboard(Resource):
     def get(self):
         try:
             print(session['user_id'])
-        except Exception as e:
-            print(type(e).__name__, str(e))
+        except:
+            print(session)
+            print(dict(session))
         if 'user_id' not in session or not session['user_id']:
             print('not logged in')
             return make_response({'error': "Not Logged In"}, 401)
