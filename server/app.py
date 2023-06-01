@@ -67,6 +67,7 @@ class Login(Resource):
             return make_response({'error': 'Please enter valid credentials'}, 422)
         # TODO: Validation Logic
         # TODO: Try/Except Logic
+        print(user.id)
         session['user_id'] = user.id
         print("The Session variable has this: " + str(session['user_id']))
         return make_response(user.to_dict(), 200)
