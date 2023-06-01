@@ -28,7 +28,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config['SESSION_COOKIE_SAMESITE'] = 'None'
 app.config['SESSION_COOKIE_SECURE'] = False
 
-CORS(app, origins=['https://freelance-wallet.vercel.app'])
+CORS(app)
 
 bcrypt = Bcrypt(app)
 
