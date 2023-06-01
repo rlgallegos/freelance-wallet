@@ -22,7 +22,6 @@ const Dashboard: React.FC = () => {
                 res.json().then(data => updateUser(data) )
             } else {
                 navigate('/welcome')
-
             }
         })
     }, [])
