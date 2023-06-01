@@ -16,7 +16,7 @@ const Dashboard: React.FC = () => {
     const { user, updateUser } = useUserContext();
 
     useEffect(() => {
-        fetch(process.env.REACT_APP_API_URL + '/serve-dashboard')
+        fetch(process.env.REACT_APP_API_URL + '/serve-dashboard', { credentials: 'include' })
         .then(res => {
             if (res.ok){
                 res.json().then(data => updateUser(data) )
