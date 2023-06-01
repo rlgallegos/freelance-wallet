@@ -19,7 +19,7 @@ app = Flask(
     # static_folder='../client/build',
     # template_folder='../client/build'
 )
-Session(app)
+
 app.config['SECRET_KEY'] = 'thesecretkey'
 # app.config['SECRET_KEY'] = os.environ.get('FLASK_APP_SECRET_KEY')
 # CORS(app, allow_headers=["Content-Type", "Authorization", "Cookie"])
@@ -32,7 +32,7 @@ app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_COOKIE_SAMESITE'] = 'None'
 app.config['SESSION_COOKIE_SECURE'] = True
 
-
+Session(app)
 
 bcrypt = Bcrypt(app)
 
