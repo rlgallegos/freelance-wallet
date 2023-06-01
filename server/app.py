@@ -78,7 +78,9 @@ class Login(Resource):
         print(session)
         print(dict(session))
         response = make_response(user.to_dict(), 200)
-        response.headers['Access-Control-Allow-Credentials'] = True
+        if 'Access-Control-Allow-Credentials' in response.headers:
+            del response.headers['Access-Control-Allow-Credentials']
+        response.headers['Access-Control-Allow-Credentials'] = 'true'
         return response
 
 api.add_resource(Login, '/login')
