@@ -23,7 +23,7 @@ app = Flask(
 app.config['SECRET_KEY'] = 'thesecretkey'
 # app.config['SECRET_KEY'] = os.environ.get('FLASK_APP_SECRET_KEY')
 # CORS(app, allow_headers=["Content-Type", "Authorization", "Cookie"])
-CORS(app)
+CORS(app, supports_credentials=True)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///freelance.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
