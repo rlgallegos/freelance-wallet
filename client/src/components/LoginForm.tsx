@@ -25,6 +25,7 @@ const LoginForm: React.FC = () => {
         onSubmit: values => {
             fetch(process.env.REACT_APP_API_URL + '/login', {
                 method: 'POST',
+                credentials: 'include',
                 headers:  {
                     'Content-Type': 'application/json'
                 },
