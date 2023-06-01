@@ -91,7 +91,7 @@ api.add_resource(Logout, '/logout')
 # Main Dashboard Route -> Provides User Data
 
 class Dashboard(Resource):
-    # @cross_origin(supports_credentials=True)
+    @cross_origin(supports_credentials=True)
     def get(self):
         try:
             print(session['user_id'])
