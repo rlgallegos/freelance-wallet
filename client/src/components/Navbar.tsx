@@ -17,8 +17,9 @@ const Navbar: React.FC = () => {
       );
 
     const handleLogout = (): void => {
-        fetch('/logout', {
-            method: "DELETE"
+        fetch(process.env.REACT_APP_API_URL + '/logout', {
+            method: "DELETE",
+            credentials: 'include',
         }).then(() => {
             setIsLoggedIn(false)
             navigate('/welcome')

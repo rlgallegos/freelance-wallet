@@ -47,8 +47,9 @@ const InitialForm: React.FC<InitialFormProps> = ({userID}) => {
         validationSchema: formSchema,
         validateOnChange: false,
         onSubmit: values => {
-            fetch(`/users/${userID}`, {
+            fetch(process.env.REACT_APP_API_URL + `/users/${userID}`, {
                 method: 'PATCH',
+                credentials: 'include',
                 headers:  {
                     'Content-Type': 'application/json'
                 },

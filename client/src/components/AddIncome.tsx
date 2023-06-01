@@ -24,8 +24,9 @@ const AddIncome: React.FC = () => {
             week: currentWeekOfMonth
         }
 
-        fetch(`/incomes/${user.income.id}`, {
+        fetch(process.env.REACT_APP_API_URL + `/incomes/${user.income.id}`, {
             method: 'PATCH',
+            credentials: 'include',
             headers: {
                 "Content-Type": "application/json"
             },
