@@ -90,7 +90,6 @@ api.add_resource(Logout, '/logout')
 
 class Dashboard(Resource):
     def get(self):
-        print(dict(request))
         try:
             print(session['user_id'])
         except:
