@@ -20,16 +20,16 @@ app = Flask(
     # template_folder='../client/build'
 )
 app.config['SECRET_KEY'] = os.environ.get('FLASK_APP_SECRET_KEY')
+CORS(app, supports_credentials=True, allow_headers=["Content-Type", "Authorization", "Cookie"])
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///freelance.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_COOKIE_SAMESITE'] = 'None'
-app.config['SESSION_COOKIE_SECURE'] = False
-app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
+app.config['SESSION_COOKIE_SECURE'] = True
 
-CORS(app, supports_credentials=True)
+
 
 bcrypt = Bcrypt(app)
 
