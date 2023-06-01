@@ -29,6 +29,7 @@ const SignupForm: React.FC = () => {
         onSubmit: values => {
             fetch(process.env.REACT_APP_API_URL + '/signup', {
                 method: 'POST',
+                credentials: 'include',
                 headers:  {
                     'Content-Type': 'application/json'
                 },
