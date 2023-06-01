@@ -13,17 +13,10 @@ metadata = MetaData(naming_convention={
 
 db = SQLAlchemy(metadata=metadata)
 
-app = Flask(
-    __name__,
-    # static_url_path='',
-    # static_folder='../client/build',
-    # template_folder='../client/build'
-)
+app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.environ.get('FLASK_APP_SECRET_KEY')
-# app.config['SECRET_KEY'] = os.environ.get('FLASK_APP_SECRET_KEY')
-# CORS(app, allow_headers=["Content-Type", "Authorization", "Cookie"])
-CORS(app, supports_credentials=True, origin='*')
+CORS(app, supports_credentials=True, origin='https://freelance-wallet.vercel.app')
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///freelance.db'
