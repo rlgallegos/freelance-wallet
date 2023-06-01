@@ -58,6 +58,7 @@ class Signup(Resource):
         except:
             return make_response({"error": "Failed to Save New User"}, 422)
         session['user_id'] = new_user.id
+        print(session['user_id'])
         response = make_response(new_user.to_dict(), 201)
         return response
 
