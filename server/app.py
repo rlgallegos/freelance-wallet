@@ -87,7 +87,6 @@ api.add_resource(Logout, '/logout')
 
 # Main Dashboard Route -> Provides User Data
 
-@cross_origin(supports_credentials=True)
 class Dashboard(Resource):
     def get(self):
         try:
@@ -101,7 +100,10 @@ class Dashboard(Resource):
 
         user = User.query.filter(User.id == session['user_id']).first()
         print(user)
-        return make_response(user.to_dict(), 200)
+
+        response = make_response(user.to_dict(), 200)
+        response.headers.add('Access-Control-Allow-Origin', 'https://freelance-wallet.vercel.app')
+        return response
 
 api.add_resource(Dashboard, '/serve-dashboard')
 
