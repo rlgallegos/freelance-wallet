@@ -32,7 +32,7 @@ api = Api(app)
 # Signup / Login Routes
 
 class Signup(Resource):
-    # @cross_origin(supports_credentials=True)
+    @cross_origin(supports_credentials=True)
     def post(self):
         data = request.get_json()
         # Verify unique username
@@ -63,7 +63,7 @@ class Signup(Resource):
 api.add_resource(Signup, '/signup')
 
 class Login(Resource):
-    # @cross_origin(supports_credentials=True)
+    @cross_origin(supports_credentials=True)
     def post(self):
         # Find user and validate them
         data = request.get_json()
@@ -91,7 +91,7 @@ api.add_resource(Logout, '/logout')
 # Main Dashboard Route -> Provides User Data
 
 class Dashboard(Resource):
-    # @cross_origin(supports_credentials=True)
+    @cross_origin(supports_credentials=True)
     def get(self):
         try:
             print(session['user_id'])
