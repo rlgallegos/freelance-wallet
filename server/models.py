@@ -6,26 +6,12 @@ from config import bcrypt, db, app
 
 # The following is just a basic example of how to build out the tables
 
-# class User(db.Model, SerializerMixin):
-#     __tablename__ = 'users'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     username = db.Column(db.String)
-
-#     bank_name = db.Column(db.String)
-#     account_name = db.Column(db.String)
-
-#     serialize_rules = ('-stuff.user',)
-
-#     stuff = db.relationship('Stuff', back_populates='user')
-
-
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String)
-    hashed_password = db.Column(db.String)
+    _password_hash = db.Column(db.String)
     initialized = db.Column(db.Boolean, default=False)
 
     average_weekly_income = db.Column(db.Integer)
@@ -34,6 +20,18 @@ class User(db.Model, SerializerMixin):
     income = db.relationship('Income', back_populates='user', uselist=False, cascade="all, delete-orphan")
 
     serialize_rules = ('-hashed_password', '-income.user', '-income.user_id')
+
+    @hybrid_property
+    def password_hash(self):
+        return self._password_hash
+    
+    @password_hash.setter
+    def password_hash(self, password):
+        hashed_password = bcrypt.generate_password_hash(password.encode('utf-8'))
+        self._password_hash = hashed_password.decode('utf-8')
+
+    def authenticate(self, password):
+        return bcrypt.check_password_hash(self._password_hash, password.encode('utf-8'))
 
 class Income(db.Model, SerializerMixin):
     __tablename__ = 'incomes'

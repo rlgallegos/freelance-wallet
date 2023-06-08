@@ -22,7 +22,7 @@ const Profile: React.FC = () => {
     }
 
     return (
-        <div className='bg-white bg-opacity-80 w-4/5 sm:w-2/3 mx-auto h-full mb-4 border-2 border-primary rounded-md'>
+        <div className='bg-white bg-opacity-80 w-4/5 sm:w-2/3 mx-auto h-3/4 mb-4 border-2 border-primary rounded-md'>
             <div className='flex flex-col items-center p-4 my-6'>
                 <h2 className='text-xl font-bold text-primary my-4'>General Information</h2>
                 <div className='mx-auto'>

@@ -9,25 +9,6 @@ from flask_cors import cross_origin
 from models import User, Income
 
 api = Api(app)
-# load_dotenv()
-
-# Be sure to actually add your secret key in the .env folder in the server directory
-# app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
-
-
-# FE Routes to render index.html before FE routing
-# @app.route('/')
-# @app.route('/welcome')
-# @app.route('/dashboard')
-# @app.route('/dashboard/')
-# @app.route('/dashboard/setup')
-# @app.route('/dashboard/profile')
-# @app.route('/<int:id>')
-# def index(id=0):
-#     return render_template("index.html")
-
-# app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
-# app.secret_key = 'thesecretkey'
 
 # Signup / Login Routes
 
@@ -49,7 +30,7 @@ class Signup(Resource):
 
         new_user = User(
             username = data['username'],
-            hashed_password = data['password'],
+            password_hash = data['password'],
             income = new_income
         )
         try:
@@ -71,9 +52,12 @@ class Login(Resource):
         user = User.query.filter(User.username == data['username']).first()
         if not user:
             return make_response({'error': 'Please enter valid credentials'}, 422)
-        # TODO: Validation Logic
-        # TODO: Try/Except Logic
-        session['user_id'] = user.id
+        if not user.authenticate(data['password']):
+            return make_response({'error': 'Unauthorized'}, 401)
+        try:
+            session['user_id'] = user.id
+        except:
+            return make_response({'error': 'Failed to login'}, 422)
         response = make_response(user.to_dict(), 200)
         return response
 
@@ -117,6 +101,17 @@ class UserById(Resource):
         except:
             return make_response({'error': 'Failed to update resource'}, 422)
         return make_response(user.to_dict(), 200)
+    
+    def delete(self, id):
+        user = User.query.filter(User.id == id).first()
+        print(user)
+        try:
+            session['user_id'] = None
+            db.session.delete(user)
+            db.session.commit()
+        except:
+            return make_response({'error': 'Failed to delete user'}, 422)
+        return make_response({}, 401)
 
 api.add_resource(UserById, '/users/<int:id>')
 
@@ -151,15 +146,6 @@ api.add_resource(IncomeById, '/incomes/<int:id>')
 
 
 
-# Show server route
-
-# @app.route('/', defaults={'path': ''})
-# @app.route('/<path:path>')
-# def serve(path):
-#     if path != "" and os.path.exists(app.static_folder + '/' + path):
-#         return send_from_directory(app.static_folder, path)
-#     else:
-#         return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

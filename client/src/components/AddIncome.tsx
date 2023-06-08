@@ -49,7 +49,7 @@ const AddIncome: React.FC = () => {
     return (
         <div className=''>
             <h1 className="text-2xl text-primary">Add to what you've earned today</h1>
-            <form className='mx-auto text-center border border-primary w-4/5 sm:w-1/2 my-4 rounded-sm p-4' onSubmit={handleSubmit}>
+            <form className='mx-auto text-center border border-primary w-4/5 sm:w-3/4 my-4 rounded-sm p-4' onSubmit={handleSubmit}>
                 <input className='border-2 border-secondary my-2 px-1 ' onChange={handleChange} type="number" name='income' placeholder='Ex 123'/>
                 <br />
                 <input className='clickable mx-auto p-2 text-center text-primary border border-primary hover:bg-secondary bg-opacity-80 rounded-lg my-4' type="submit" value="Add Income for Current Day" />

@@ -38,7 +38,7 @@ const Dashboard: React.FC = () => {
   return (
     <>
         {!user.initialized && <InitialForm userID={user.id}/>}
-        <div>
+        <div className='h-full flex items-center'>
             {startTour && <Onboarding />}
             
             <Routes>
