@@ -50,6 +50,7 @@ class Login(Resource):
         # Find user and validate them
         data = request.get_json()
         user = User.query.filter(User.username == data['username']).first()
+        print(user.username)
         if not user:
             return make_response({'error': 'Please enter valid credentials'}, 422)
         if not user.authenticate(data['password']):
@@ -75,6 +76,7 @@ api.add_resource(Logout, '/logout')
 class Dashboard(Resource):
     # @cross_origin(supports_credentials=True)
     def get(self):
+        print(dict(session))
         if 'user_id' not in session or not session['user_id']:
             print('not logged in')
             return make_response({'error': "Not Logged In"}, 401)
@@ -104,7 +106,6 @@ class UserById(Resource):
     
     def delete(self, id):
         user = User.query.filter(User.id == id).first()
-        print(user)
         try:
             session['user_id'] = None
             db.session.delete(user)

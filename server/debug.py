@@ -32,7 +32,7 @@ with app.app_context():
     # db.session.add(income)
     # db.session.commit()
 
-    user = User.query.filter(User.id == 2).first()
+    user = User.query.filter(User.username == "Bobby").first()
 
     # user.average_weekly_income = 900
     # user.average_monthly_expenses = 1200
