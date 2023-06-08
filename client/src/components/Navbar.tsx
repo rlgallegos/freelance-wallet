@@ -8,7 +8,7 @@ const Navbar: React.FC = () => {
     const tailwindCSSLink = "text-primary sm:mx-20"
 
     const { user } = useUserContext();
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true)
     const [isOpenNavBar, setIsOpenNavBar] = useState(
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -22,7 +22,7 @@ const Navbar: React.FC = () => {
             credentials: 'include',
         }).then(() => {
             setIsLoggedIn(false)
-            navigate('/welcome')
+            window.location.href = '/'
         })
     }
 

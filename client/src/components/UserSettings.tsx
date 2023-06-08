@@ -8,7 +8,7 @@ const UserSettings: React.FC = () => {
 
     const { user } = useUserContext()
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const handleConfirmDelete = () => {
         setConfirmPopup(!confirmPopup)
@@ -16,7 +16,7 @@ const UserSettings: React.FC = () => {
     const handleDeleteUser = () => {
         fetch(process.env.REACT_APP_API_URL + `/users/${user.id}`, {
             method: "DELETE"
-        }).then(() => navigate('/')).catch(err => console.log(err))
+        }).then(() => window.location.href = '/').catch(err => console.log(err))
     }
 
     return (

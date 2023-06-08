@@ -50,7 +50,6 @@ class Login(Resource):
         # Find user and validate them
         data = request.get_json()
         user = User.query.filter(User.username == data['username']).first()
-        print(user.username)
         if not user:
             return make_response({'error': 'Please enter valid credentials'}, 422)
         if not user.authenticate(data['password']):
