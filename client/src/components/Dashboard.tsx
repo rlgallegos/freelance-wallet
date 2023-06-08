@@ -9,8 +9,13 @@ import Home from './Home';
 import Onboarding from './Onboarding';
 import InitialForm from './InitialForm';
 
+interface NavbarProps {
+    isLoggedIn: boolean;
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  }
 
-const Dashboard: React.FC = () => {
+
+const Dashboard: React.FC<NavbarProps> = ({isLoggedIn, setIsLoggedIn}) => {
     const [startTour, setStartTour] = useState<boolean>(false)
     const navigate = useNavigate()
     const { user, updateUser } = useUserContext();
@@ -23,6 +28,7 @@ const Dashboard: React.FC = () => {
         .then(res => {
             if (res.ok){
                 res.json().then(data => updateUser(data) )
+                setIsLoggedIn(true)
             } else {
                 navigate('/welcome')
             }

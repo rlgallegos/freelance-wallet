@@ -19,7 +19,7 @@ class User(db.Model, SerializerMixin):
 
     income = db.relationship('Income', back_populates='user', uselist=False, cascade="all, delete-orphan")
 
-    serialize_rules = ('-hashed_password', '-income.user', '-income.user_id')
+    serialize_rules = ('-_password_hash', '-income.user', '-income.user_id')
 
     @hybrid_property
     def password_hash(self):

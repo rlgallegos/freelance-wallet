@@ -5,7 +5,6 @@ from flask import Flask, request, make_response, jsonify, redirect, url_for, ren
 from flask_restful import Api, Resource
 from flask_cors import cross_origin
 
-# Here import all of the different models you'll need along with the database
 from models import User, Income
 
 api = Api(app)
@@ -13,7 +12,6 @@ api = Api(app)
 # Signup / Login Routes
 
 class Signup(Resource):
-    # @cross_origin(supports_credentials=True)
     def post(self):
         data = request.get_json()
         # Verify unique username
@@ -45,7 +43,6 @@ class Signup(Resource):
 api.add_resource(Signup, '/signup')
 
 class Login(Resource):
-    # @cross_origin(supports_credentials=True)
     def post(self):
         # Find user and validate them
         data = request.get_json()

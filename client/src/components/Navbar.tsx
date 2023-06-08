@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { useUserContext } from "./UserContext"
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
 
+interface NavbarProps {
+    isLoggedIn: boolean;
+    setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  }
 
-const Navbar: React.FC = () => {
+
+const Navbar: React.FC<NavbarProps> = ({isLoggedIn, setIsLoggedIn}) => {
     const tailwindCSSLink = "text-primary sm:mx-20"
-
     const { user } = useUserContext();
-    // const navigate = useNavigate()
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true)
+
     const [isOpenNavBar, setIsOpenNavBar] = useState(
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
           navigator.userAgent
