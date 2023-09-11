@@ -10,11 +10,10 @@ interface NavbarProps {
 const Welcome: React.FC<NavbarProps> = ({isLoggedIn, setIsLoggedIn}) => {
     const [form, setForm] = useState<string>('login-button')
 
-
     function handleClick(e: React.MouseEvent<HTMLButtonElement>){
         setForm(e.currentTarget.id)
     }
-
+    
   return (
     <div className='bg-white bg-opacity-80 w-4/5 sm:w-1/3 mx-auto mb-4 text-center flex flex-col justify-center my-2 border-2 border-primary rounded-md p-6'>
         {!isLoggedIn ? 

@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 from flask import Flask
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
@@ -10,6 +11,8 @@ from flask_session import Session
 metadata = MetaData(naming_convention={
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
 })
+
+load_dotenv()
 
 db = SQLAlchemy(metadata=metadata)
 
