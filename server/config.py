@@ -32,7 +32,7 @@ try:
     Session(app)
     
     # Production CORS
-    CORS(app, supports_credentials=True, origin='*')
+    CORS(app, supports_credentials=True, origin='https://freelance-wallet.vercel.app')
     
     # Development CORS
     # CORS(app, supports_credentials=True, origin='*')
