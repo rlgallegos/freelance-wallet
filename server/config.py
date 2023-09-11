@@ -11,28 +11,37 @@ from flask_session import Session
 metadata = MetaData(naming_convention={
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
 })
+try:
+    load_dotenv()
 
-load_dotenv()
+    db = SQLAlchemy(metadata=metadata)
 
-db = SQLAlchemy(metadata=metadata)
+    app = Flask(__name__)
 
-app = Flask(__name__)
+    app.secret_key = os.environ.get('FLASK_APP_SECRET_KEY')
 
-app.config['SECRET_KEY'] = os.environ.get('FLASK_APP_SECRET_KEY')
-CORS(app, supports_credentials=True, origin='https://freelance-wallet.vercel.app')
-app.config['CORS_HEADERS'] = 'Content-Type'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///freelance.db'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///freelance.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    # Session configuration
+    app.config['SESSION_TYPE'] = 'filesystem'
+    app.config['SESSION_INTERFACE'] = 'filesystem'
+    app.config['SESSION_COOKIE_SAMESITE'] = 'None'
+    app.config['SESSION_COOKIE_SECURE'] = True
+    app.config['CORS_HEADERS'] = 'Content-Type'
+    Session(app)
+    
+    # Production CORS
+    CORS(app, supports_credentials=True, origin='https://freelance-wallet.vercel.app')
+    
+    # Development CORS
+    # CORS(app, supports_credentials=True, origin='*')
 
-app.config['SESSION_TYPE'] = 'filesystem'
-app.config['SESSION_COOKIE_SAMESITE'] = 'None'
-app.config['SESSION_COOKIE_SECURE'] = False
+    bcrypt = Bcrypt(app)
 
-Session(app)
+    migrate = Migrate(app, db)
 
-bcrypt = Bcrypt(app)
+    db.init_app(app)
 
-migrate = Migrate(app, db)
-
-db.init_app(app)
+except Exception as e:
+    print(f"An error occurred: {e}")

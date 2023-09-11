@@ -44,18 +44,24 @@ api.add_resource(Signup, '/signup')
 
 class Login(Resource):
     def post(self):
+        print('entering post request')
         # Find user and validate them
         data = request.get_json()
         user = User.query.filter(User.username == data['username']).first()
         if not user:
+            print('failed to find user')
             return make_response({'error': 'Please enter valid credentials'}, 422)
         if not user.authenticate(data['password']):
+            print('failed to authenticate user')
             return make_response({'error': 'Unauthorized'}, 401)
         try:
             session['user_id'] = user.id
-        except:
+            print('successfully set session variable', session['user_id'])
+        except Exception as e:
+            print('failed to set session variable:', str(e))
             return make_response({'error': 'Failed to login'}, 422)
         response = make_response(user.to_dict(), 200)
+        print('session variable inside of the POST login', dict(session))
         return response
 
 api.add_resource(Login, '/login')
@@ -70,17 +76,17 @@ api.add_resource(Logout, '/logout')
 # Main Dashboard Route -> Provides User Data
 
 class Dashboard(Resource):
-    # @cross_origin(supports_credentials=True)
+    @cross_origin(supports_credentials=True)
     def get(self):
         print(dict(session))
         if 'user_id' not in session or not session['user_id']:
-            print('not logged in')
             return make_response({'error': "Not Logged In"}, 401)
 
         user = User.query.filter(User.id == session['user_id']).first()
-        print(user)
+        # print(user)
 
         response = make_response(user.to_dict(), 200)
+        
         return response
 
 api.add_resource(Dashboard, '/serve-dashboard')

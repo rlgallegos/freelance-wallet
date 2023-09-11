@@ -13,7 +13,7 @@ const LoginForm: React.FC = () => {
       username: yup.string().required("Must enter a username").max(15)
       });
 
-  
+
   //Formik Logic
     const formik = useFormik({
         initialValues: {
